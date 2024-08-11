@@ -104,7 +104,7 @@ const Login = () => {
                 </button>
 
                 <button
-                  class="inline-block shrink-0 rounded-md border border-blue-200 bg-blue-200 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
+                  class="inline-block shrink-0 rounded-md border border-blue-300 bg-blue-300 px-12 py-3 text-sm font-medium text-blue-600 transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
                   onClick={handleRegister}
                 >
                   Register

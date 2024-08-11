@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getDoc, setDoc, doc, addDoc, collection } from 'firebase/firestore';
-import { auth, db } from '../config/firebase-config';
+import { getDoc, setDoc, doc, addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { auth, db } from '../../config/firebase-config';
 
 const Timer = ({ initialHours= 2 ,initialMinutes = 25, initialSeconds = 0 }) => {
     const [hours, setHours] = useState(initialHours);
@@ -92,29 +92,35 @@ const Timer = ({ initialHours= 2 ,initialMinutes = 25, initialSeconds = 0 }) => 
     const handleFinish = async (tHour, tMinute, tSecond) => {
         try {
             const user = auth.currentUser;
-            if(user)
+            console.log(userData, pomData);
+            if(user && userData)
             {
                 console.log(tHour, tMinute, tSecond);
                 const totalDuration = tHour * 60 * 60 + tMinute * 60 + tSecond;
-                const totalPoint = parseFloat(totalDuration * 0.1).toFixed(2);
+                const totalPoint = parseFloat((totalDuration * 0.1).toFixed(2));
 
-                console.log(totalDuration, totalPoint);
-                const PomHistoryRef = doc(db, "PomHistory", user.uid);
-                const subColRef = collection(PomHistoryRef, "poms");
+                console.log(pomData.pompoint, totalPoint);
+                const PomHistoryRef = collection(db, "PomHistory");
 
                 await setDoc(doc(db, "PomInfos", user.uid), {
-                    pompoint: parseFloat(pomData.pompoint + totalPoint).toFixed(2),
+                    pompoint: parseFloat(pomData.pompoint + totalPoint),
                     friends: pomData.friends,
                     place: pomData.place,
                     lastPom: new Date().toISOString().split('T')[0],
                     total_poms: pomData.total_poms + 1
                 });
 
-                await addDoc( subColRef, {
+                await addDoc( PomHistoryRef, {
+                    uid: user.uid,
+                    name: userData.firstName,
+                    surname: userData.lastName,
+                    school: userData.school,
+                    class: userData.class,
                     description: description,
                     duration: totalDuration,
                     point: totalPoint,
-                    date: new Date().toISOString().split('T')[0]
+                    date: new Date().toISOString().split('T')[0],
+                    createdAt: serverTimestamp()
                 });
 
                 console.log("Pom Finished!");
@@ -166,7 +172,7 @@ const Timer = ({ initialHours= 2 ,initialMinutes = 25, initialSeconds = 0 }) => 
                 <input className="border border-gray-300 rounded-md px-2 py-1 mt-5 w-24" type="number" min="0" max="59" placeholder='Second' onChange={handleSeconds} />
             </div>
             <div className="mt-4">
-                <label htmlFor="description" className="block text-sm font-medium text-gray-700">Lecture</label>
+                <label htmlFor="description" className="block text-sm font-medium text-gray-700 text-center">Description</label>
                 <input
                 type="text"
                 name="description"

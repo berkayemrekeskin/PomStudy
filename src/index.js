@@ -9,6 +9,7 @@ import Register from './components/Register/Register';
 import Session from './components/Session/Session';
 import Social from './components/Social/Social';
 import UserProfile from './components/UserProfile/UserProfile';
+import Dashboard from './components/Dashboard/Dashboard';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,6 +24,7 @@ root.render(
       <Route path='/session' element={ <Session /> } />
       <Route path='/social' element={ <Social /> } />
       <Route path='/profile' element={ <UserProfile /> } />
+      <Route path='/dashboard' element={ <Dashboard /> } />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

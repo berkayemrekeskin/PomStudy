@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Timer from '../Timer';
+import Timer from './Timer';
 import app, { auth, db } from '../../config/firebase-config';
 import { useNavigate } from 'react-router-dom';
 import { getDoc, doc } from 'firebase/firestore';
@@ -49,18 +49,21 @@ const Session = () => {
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="bg-white p-8 rounded-lg shadow-lg">
-          <Timer initialHours={0} initialMinutes={5} initialSeconds={0} />
-        </div>
-      </div>
+      
 
       <div id="user-profile-container" className='flex flex-col items-center justify-center'>
+
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="bg-white p-8 rounded-lg shadow-lg">
+            <Timer initialHours={0} initialMinutes={0} initialSeconds={0} />
+          </div>
+        </div>
+
         <div className='absolute bottom-10'>
           <div className="sm:hidden">
             <label htmlFor="Tab" className="sr-only">Tab</label>
             <select id="Tab" className="w-full rounded-md border-gray-200">
-              <option>Main</option>
+              <option>Social</option>
               <option>Dashboard</option>
               <option>Session</option>
               <option>Messages</option>
@@ -74,9 +77,9 @@ const Session = () => {
                 href="#"
                 className="shrink-0 rounded-lg p-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 aria-current="page"
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/social')}
               >
-                Main
+                Social
               </a>
               <a
                 href="#"

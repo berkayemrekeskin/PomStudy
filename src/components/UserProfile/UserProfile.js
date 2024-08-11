@@ -1,30 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import app, { auth, db } from '../../config/firebase-config';
 import { useNavigate } from 'react-router-dom';
-import { getDoc, doc } from 'firebase/firestore';
+import { getDoc, doc, collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 
 const UserProfile = () => {
   const [userData, setUserData] = useState(null);
+  const [position, setPosition] = useState(null);
   const [pomData, setPomData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [authenticated, setAuthenticated] = useState(false);
+  const [leaderboard, setLeaderboard] = useState([]); 
+
   const navigate = useNavigate();
+  const userInfos = collection(db, 'PomInfos');
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+    
+    const unsubscribeAuth = auth.onAuthStateChanged(async (user) => {
       if (user) {
         setAuthenticated(true);
         const userRef = doc(db, "Users", user.uid);
         const userSnap = await getDoc(userRef);
         const pomInfoRef = doc(db, "PomInfos", user.uid);
         const pomInfoSnap = await getDoc(pomInfoRef);
+
         if (userSnap.exists()) {
           setUserData(userSnap.data());
         } else {
           console.log("No such User!");
         }
         if(pomInfoSnap.exists())
-        {
+        { 
           setPomData(pomInfoSnap.data());
         } else {
           console.log("No Pom Data!");
@@ -36,10 +42,14 @@ const UserProfile = () => {
         setLoading(false);
         navigate('/login'); // Redirect to login if not authenticated
       }
-    });
+    }, []);
 
-    return () => unsubscribe(); // Cleanup the listener on unmount
-  }, [navigate]);
+    
+    return () => {
+      unsubscribeAuth();
+    }
+
+  }, [navigate, userInfos]);
 
 
   const handleSession = () => {
@@ -50,7 +60,6 @@ const UserProfile = () => {
     await auth.signOut();
     navigate("/login");
   }
-
 
   if (loading) {
     return <div>Loading...</div>; 
@@ -140,7 +149,7 @@ const UserProfile = () => {
           <div className="sm:hidden">
             <label htmlFor="Tab" className="sr-only">Tab</label>
             <select id="Tab" className="w-full rounded-md border-gray-200">
-              <option>Main</option>
+              <option>Social</option>
               <option>Dashboard</option>
               <option>Session</option>
               <option>Messages</option>
@@ -154,9 +163,9 @@ const UserProfile = () => {
                 href="#"
                 className="shrink-0 rounded-lg p-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 aria-current="page"
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/social')}
               >
-                Main
+                Social
               </a>
               <a
                 href="#"
