@@ -27,6 +27,9 @@ PomStudy is a productivity web application that helps high school students manag
 
 https://github.com/user-attachments/assets/97e70ffe-3822-439c-8226-0aa0995380d3
 
+![Ekran görüntüsü 2024-08-12 202545](https://github.com/user-attachments/assets/defa46d2-8118-4754-9d5e-154ca4423eb8)
+
+
 2. **Session Page:**
    - Includes a Pomodoro timer.
    - Users can add descriptions to their Pomodoro sessions and track their progress.
@@ -40,6 +43,9 @@ https://github.com/user-attachments/assets/97e70ffe-3822-439c-8226-0aa0995380d3
    - Users can create rooms for the school and their classes.
 
 https://github.com/user-attachments/assets/1fc14a52-4712-4110-842c-d0f72cfbfdb5
+
+
+![Ekran görüntüsü 2024-08-12 202635](https://github.com/user-attachments/assets/eeec0a27-2e66-42c3-8fa8-6f783edb8db1)
 
 4. **Profile Page:**
    - Displays user data.
