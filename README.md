@@ -1,70 +1,54 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# PomStudy
 
-## Available Scripts
+PomStudy is a productivity web application that helps high school students manage their time and compete with their friends using the Pomodoro technique. It also provides a social platform where users can share their completed Pomodoro sessions, chat with each other, and see themselves in the leaderboard.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Authentication:** Secure user authentication with Firebase.
+- **Social Page:** View and interact with Pomodoro sessions completed by other users.
+- **Session Page:** Access a Pomodoro timer and add descriptions for your sessions.
+- **Messages Page:** Send and receive messages, engage in chats with other users.
+- **Profile Page:** View your user profile, including personal data.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Frontend:** React.js
+- **Backend/Database:** Firebase
+- **Authentication:** Firebase Authentication
 
-### `npm test`
+## Pages Overview
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Social Page:**
+   - Displays a feed of Pomodoro sessions completed by other users.
+   - Users can view and interact with posts made by others.
+   - Posts are specialized for the user's school and class (Not all posts created are shown)
 
-### `npm run build`
+https://github.com/user-attachments/assets/97e70ffe-3822-439c-8226-0aa0995380d3
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Session Page:**
+   - Includes a Pomodoro timer.
+   - Users can add descriptions to their Pomodoro sessions and track their progress.
+   - After the pomodoro session, user gets a PomPoint according to it's duration. Each user has it's PomPoints and leaderboard system according to that.
+     
+![Ekran görüntüsü 2024-08-12 202616](https://github.com/user-attachments/assets/926cd894-1427-4704-ba59-db593809b9ce)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Messages Page:**
+   - A messaging platform for users to chat with each other.
+   - Supports real-time messaging among users.
+   - Users can create rooms for the school and their classes.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+https://github.com/user-attachments/assets/1fc14a52-4712-4110-842c-d0f72cfbfdb5
 
-### `npm run eject`
+4. **Profile Page:**
+   - Displays user data.
+   - According to their PomPoints, users are sorted among the all users and each user has it's own place inside the competition.
+   
+![Ekran görüntüsü 2024-08-12 202651](https://github.com/user-attachments/assets/ad6d5ed7-4916-4447-bb48-556bb56d9049)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+5. **Register & Login:**
+   - Authorization was made using Firebase Authorization.
+   - Supports Google Auth also
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<img src="https://github.com/user-attachments/assets/4c6324c7-371a-43af-aa25-0c7440c5ec95" width="500" height="300" />
+<img src="https://github.com/user-attachments/assets/5a905862-dd78-446a-866b-590a75b29157" width="500" height="300" />
