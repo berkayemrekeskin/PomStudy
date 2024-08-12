@@ -13,7 +13,7 @@ PomStudy is a productivity web application that helps high school students manag
 
 ## Tech Stack
 
-- **Frontend:** React.js
+- **Frontend:** React.js & Tailwind.css
 - **Backend/Database:** Firebase
 - **Authentication:** Firebase Authentication
 
