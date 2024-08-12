@@ -31,6 +31,7 @@ const Register = () => {
         if(user)
         {
           await setDoc(doc(db, "Users", user.uid), {
+            uid: user.uid,
             email: user.email,
             firstName: fname,
             lastName: lname,
@@ -39,6 +40,7 @@ const Register = () => {
           });
 
           await setDoc(doc(db, "PomInfos", user.uid), {
+            uid: user.uid,
             pompoint: 0.0,
             friends: 0,
             place: 0,

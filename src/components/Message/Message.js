@@ -37,11 +37,10 @@ const Message = () => {
           <div className="sm:hidden">
             <label htmlFor="Tab" className="sr-only">Tab</label>
             <select id="Tab" className="w-full rounded-md border-gray-200">
-              <option>Social</option>
-              <option>Dashboard</option>
+              <option >Social</option>
               <option>Session</option>
               <option>Messages</option>
-              <option selected>Profile</option>
+              <option>Profile</option>
             </select>
           </div>
 
@@ -54,13 +53,6 @@ const Message = () => {
                 onClick={() => navigate('/social')}
               >
                 Social
-              </a>
-              <a
-                href="#"
-                className="shrink-0 rounded-lg p-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                onClick={() => navigate('/dashboard')}
-              >
-                Dashboard
               </a>
               <a
                 href="#"

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import app, { auth, db } from '../../config/firebase-config';
 import { useNavigate } from 'react-router-dom';
-import { getDoc, doc, collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { getDoc, doc, collection, onSnapshot, orderBy, query, getDocs, setDoc} from 'firebase/firestore';
 
 const UserProfile = () => {
   const [userData, setUserData] = useState(null);
@@ -12,7 +12,6 @@ const UserProfile = () => {
   const [leaderboard, setLeaderboard] = useState([]); 
 
   const navigate = useNavigate();
-  const userInfos = collection(db, 'PomInfos');
 
   useEffect(() => {
     
@@ -23,6 +22,11 @@ const UserProfile = () => {
         const userSnap = await getDoc(userRef);
         const pomInfoRef = doc(db, "PomInfos", user.uid);
         const pomInfoSnap = await getDoc(pomInfoRef);
+
+        const userInfos = collection(db, "PomInfos");
+        const userInfosSnapshot = await getDocs(userInfos);
+        const userInfosList = userInfosSnapshot.docs.map(doc => doc.data(), doc.id);
+        setLeaderboard(userInfosList);
 
         if (userSnap.exists()) {
           setUserData(userSnap.data());
@@ -43,13 +47,38 @@ const UserProfile = () => {
         navigate('/login'); // Redirect to login if not authenticated
       }
     }, []);
-
     
     return () => {
       unsubscribeAuth();
     }
 
-  }, [navigate, userInfos]);
+  }, [navigate]);
+
+  useEffect(() => {
+
+    console.log("Leaderboard: ", leaderboard);
+
+    const fetchPosition = async () => {
+      if(leaderboard.length > 0)
+      {
+        const sortedLeaderboard = leaderboard.sort((a, b) => b.pompoint - a.pompoint);
+        console.log("Sorted Leaderboard: ", sortedLeaderboard);
+        const position = sortedLeaderboard.findIndex(user => user.id === userData.uid) + 1;
+        setDoc(doc(db, "PomInfos", userData.uid), {
+          id: userData.uid,
+          pompoint: pomData.pompoint,
+          friends: pomData.friends,
+          place: position,
+          lastPom: pomData.lastPom,
+          total_poms: pomData.total_poms
+        });
+        setPosition(position);
+      }
+
+      console.log("Position: ", position);
+    }
+    fetchPosition();
+  }, [leaderboard, userData]);
 
 
   const handleSession = () => {
@@ -97,7 +126,7 @@ const UserProfile = () => {
 
           <div className="mt-4">
             <p className="text-pretty text-sm text-gray-500">
-              Generated Profile Message According to User's Pomodoro Point
+              You are currently in {position}th place with {pomData.pompoint} pompoint in the leaderboard. Keep up the good work!
             </p>
           </div>
 
@@ -150,7 +179,6 @@ const UserProfile = () => {
             <label htmlFor="Tab" className="sr-only">Tab</label>
             <select id="Tab" className="w-full rounded-md border-gray-200">
               <option>Social</option>
-              <option>Dashboard</option>
               <option>Session</option>
               <option>Messages</option>
               <option selected>Profile</option>
@@ -166,13 +194,6 @@ const UserProfile = () => {
                 onClick={() => navigate('/social')}
               >
                 Social
-              </a>
-              <a
-                href="#"
-                className="shrink-0 rounded-lg p-2 text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 active:text-gray-900 active:bg-gray-100"
-                onClick={() => navigate('/dashboard')}
-              >
-                Dashboard
               </a>
               <a
                 href="#"
