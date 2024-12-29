@@ -57,5 +57,5 @@ https://github.com/user-attachments/assets/1fc14a52-4712-4110-842c-d0f72cfbfdb5
    - Authorization was made using Firebase Authorization.
    - Supports Google Auth also
 
-<img src="https://github.com/user-attachments/assets/4c6324c7-371a-43af-aa25-0c7440c5ec95" width="500" height="300" />
-<img src="https://github.com/user-attachments/assets/5a905862-dd78-446a-866b-590a75b29157" width="500" height="300" />
+<img src="https://github.com/user-attachments/assets/4c6324c7-371a-43af-aa25-0c7440c5ec95"/>
+<img src="https://github.com/user-attachments/assets/5a905862-dd78-446a-866b-590a75b29157"/>
